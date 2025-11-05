@@ -13,12 +13,27 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(express.json());
+import cors from "cors";
+
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "https://curalink-frontend-gamma.vercel.app", // deployed frontend
+];
+
 app.use(
   cors({
-    origin: "https://curalink-frontend-gamma.vercel.app",
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow non-browser requests
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed"));
+      }
+    },
     credentials: true,
   })
 );
+
 // ✅ REGISTER
 app.post("/api/register", async (req, res) => {
   try {
