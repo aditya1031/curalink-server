@@ -37,8 +37,6 @@ app.use(
   })
 );
 
-// Handle OPTIONS preflight requests globally
-app.options("*", cors());
 
 
 // ✅ REGISTER
