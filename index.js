@@ -13,13 +13,10 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(express.json());
-import cors from "cors";
-
 const allowedOrigins = [
-  "http://localhost:5173", // local dev
-  "https://curalink-frontend-gamma.vercel.app", // deployed frontend
+  "https://curalink-frontend-gamma.vercel.app",
+  "http://localhost:5173",
 ];
-
 app.use(
   cors({
     origin: function (origin, callback) {
