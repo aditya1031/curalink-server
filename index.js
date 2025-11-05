@@ -35,8 +35,6 @@ app.use(
   })
 );
 
-// Handle preflight OPTIONS requests globally
-app.options("*", cors({ origin: allowedOrigins, credentials: true }));
 
 // === JSON parser
 app.use(express.json());
